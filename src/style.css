@@ -1,0 +1,27 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body
+{
+    overflow: hidden;
+}
+
+.experience
+{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}
+.text
+{
+    /* color: #fff; */
+    margin: auto;
+    width: 50%;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+}
