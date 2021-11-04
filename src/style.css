@@ -19,9 +19,11 @@ body
 }
 .text
 {
-    /* color: #fff; */
-    margin: auto;
-    width: 50%;
+    color: #fff;
     text-align: center;
     font-family: Roboto, sans-serif;
+}
+.text a{
+    color: #fff;
+    text-decoration: underline;
 }
