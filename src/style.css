@@ -9,6 +9,10 @@ body
 {
     overflow: hidden;
 }
+body
+{
+    background-color: #000;
+}
 
 .experience
 {

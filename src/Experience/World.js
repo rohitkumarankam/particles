@@ -15,19 +15,9 @@ export default class World
         {
             if(_group.name === 'base')
             {
-                // this.setDummy()
                 this.setParticles()
             }
         })
-    }
-
-    setDummy()
-    {
-        const cube = new THREE.Mesh(
-            new THREE.BoxGeometry(1, 1, 1),
-            new THREE.MeshBasicMaterial({ map: this.resources.items.lennaTexture })
-        )
-        this.scene.add(cube)
     }
     setParticles()
     {
