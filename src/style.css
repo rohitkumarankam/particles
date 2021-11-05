@@ -25,15 +25,16 @@ body
 .text
 {
     color: #fff;
-    text-align: center;
     font-family: Roboto, sans-serif;
-    background-color: rgba(255,255,255,0.05);
-    padding: 10px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(0,0,0,0.5) 100%);
+    padding: 15px;
     width: fit-content;
     height: fit-content;
-    border-color: #fff;
-    border-style: solid;
     border-radius: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: initial;
+    text-align: left;
 }
 .text a{
     color: #fff;
@@ -43,4 +44,6 @@ body
 {
     width: 100vw;
     height: 100vh;
+    position: relative;
+    text-align: center;
 }
