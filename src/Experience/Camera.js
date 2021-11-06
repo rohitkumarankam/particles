@@ -20,6 +20,10 @@ export default class Camera
 
         this.setInstance()
         this.setModes()
+        if(this.setModes)
+        {
+            this.scroll()
+        }
     }
 
     setInstance()
@@ -27,6 +31,7 @@ export default class Camera
         // Set up
         this.instance = new THREE.PerspectiveCamera(55, this.config.width / this.config.height, 0.1, 150)
         this.instance.rotation.reorder('YXZ')
+        // this.instance.lookAt(new THREE.Vector3(0, 0, 0))
 
         this.scene.add(this.instance)
     }
@@ -39,7 +44,7 @@ export default class Camera
         this.modes.default = {}
         this.modes.default.instance = this.instance.clone()
         this.modes.default.instance.rotation.reorder('YXZ')
-        this.modes.default.instance.position.z = 5
+        this.modes.default.instance.position.z = 0
 
         // Debug
         this.modes.debug = {}
@@ -68,6 +73,13 @@ export default class Camera
         this.modes.debug.instance.aspect = this.config.width / this.config.height
         this.modes.debug.instance.updateProjectionMatrix()
     }
+    scroll()
+    {
+        window.addEventListener('scroll', () =>{
+            var x = window.scrollY /1000
+            this.modes.default.instance.rotation.set(0,0,x)
+        })
+    }
 
     update()
     {
@@ -78,6 +90,7 @@ export default class Camera
         this.instance.position.copy(this.modes[this.mode].instance.position)
         this.instance.quaternion.copy(this.modes[this.mode].instance.quaternion)
         this.instance.updateMatrixWorld() // To be used in projection
+        // console.log(this.modes[this.mode])
     }
 
     destroy()
