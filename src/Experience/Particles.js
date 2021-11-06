@@ -13,7 +13,7 @@ export default class Particles
         this.time = this.experience.time
         this.debug = this.experience.debug
 
-        this.count = 2000
+        this.count = 5000
 
         if(this.debug)
         {
@@ -52,6 +52,9 @@ export default class Particles
         const progressArray = new Float32Array(this.count)
         const sizeArray = new Float32Array(this.count)
         const alphaArray = new Float32Array(this.count)
+        const redArray = new Float32Array(this.count)
+        const greenArray = new Float32Array(this.count)
+        const blueArray = new Float32Array(this.count)
 
         for(let i = 0; i < this.count; i++)
         {
@@ -64,12 +67,18 @@ export default class Particles
             sizeArray[i] = Math.random()
 
             alphaArray[i] = Math.random()
+            redArray[i] = Math.random()
+            greenArray[i] = Math.random()
+            blueArray[i] = Math.random()
         }
 
         this.geometry.setAttribute('position', new THREE.Float32BufferAttribute(positionArray, 3))
         this.geometry.setAttribute('aProgress', new THREE.Float32BufferAttribute(progressArray, 1))
         this.geometry.setAttribute('aSize', new THREE.Float32BufferAttribute(sizeArray, 1))
         this.geometry.setAttribute('aAlpha', new THREE.Float32BufferAttribute(alphaArray, 1))
+        this.geometry.setAttribute('aRed', new THREE.Float32BufferAttribute(redArray, 1))
+        this.geometry.setAttribute('aGreen', new THREE.Float32BufferAttribute(greenArray, 1))
+        this.geometry.setAttribute('aBlue', new THREE.Float32BufferAttribute(blueArray, 1))
     }
 
     setMaterial()
@@ -81,7 +90,7 @@ export default class Particles
             uniforms:
             {
                 uTime: { value: 0 },
-                uSize: { value: 25 },
+                uSize: { value: 40 },
                 uProgressSpeed: { value: 0.000015 },
                 uPerlinFrequency: { value: 0.17 },
                 uPerlinMultiplier: { value: 1 },

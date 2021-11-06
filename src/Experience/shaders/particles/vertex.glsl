@@ -7,8 +7,14 @@ uniform float uPerlinMultiplier;
 attribute float aProgress;
 attribute float aSize;
 attribute float aAlpha;
+attribute float aRed;
+attribute float aGreen;
+attribute float aBlue;
 
 varying float vAlpha;
+varying float vRed;
+varying float vGreen;
+varying float vBlue;
 
 #pragma glslify: perlin3d = require('../partials/perlin3d.glsl')
 
@@ -27,4 +33,7 @@ void main()
     gl_PointSize *= (1.0 / - viewPosition.z);
 
     vAlpha = aAlpha;
+    vRed = aBlue;
+    vGreen = aGreen;
+    vBlue = aBlue;
 }
