@@ -28,8 +28,8 @@ body
     font-family: Roboto, sans-serif;
     background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(0,0,0,0.06) 100%);
     padding: 15px;
-    width: 50%;
-    margin-left: 25%;
+    width: 90%;
+    margin-left: 4%;
     margin-top: 30px;
     margin-bottom: 20px;
     border-radius: 10px;
@@ -52,4 +52,27 @@ canvas
     height: 100vh;
     width: 100%;
     margin-top:0;
+}
+.demo
+{
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 50px 0;
+}
+.terminal
+{
+    padding: 10px 20px;
+    border-radius: 10px;
+    background-color: rgb(40, 42, 54);
+}
+.xterm-viewport::-webkit-scrollbar
+{
+    width: 10px;
+}
+.xterm-viewport::-webkit-scrollbar-thumb {
+    min-height: 20px;
+    background-color: #ffffff20;
+}
+.xterm-viewport::-webkit-scrollbar-track {
+    opacity: 0;
 }
