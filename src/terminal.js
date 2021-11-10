@@ -51,7 +51,18 @@ var baseTheme = {
       cursorBlink: true,
     });
     term.open(document.querySelector('#terminal'));
-  
+    // term.resize(Math.ceil(window.innerWidth/20),20)
+    // term.onResize((size)=>{console.log(size)})
+    var sizes = {
+      width: Math.floor(window.innerWidth*0.06),
+      height: Math.floor(window.innerHeight*0.033),
+    }
+    term.resize(sizes.width,sizes.height)
+    window.addEventListener('resize', ()=>{
+      sizes.width = Math.floor(window.innerWidth*0.06)
+      sizes.height = Math.floor(window.innerHeight*0.033)
+      term.resize(sizes.width, sizes.height)
+    })
     // var isWebglEnabled = false;
     // try {
     //   const webgl = new window.WebglAddon.WebglAddon();
@@ -128,85 +139,85 @@ var baseTheme = {
       });
   
       // Create a very simple link provider which hardcodes links for certain lines
-      term.registerLinkProvider({
-        provideLinks(bufferLineNumber, callback) {
-          switch (bufferLineNumber) {
-            case 2:
-              callback([
-                {
-                  text: 'VS Code',
-                  range: { start: { x: 28, y: 2 }, end: { x: 34, y: 2 } },
-                  activate() {
-                    window.open('https://github.com/microsoft/vscode', '_blank');
-                  }
-                },
-                {
-                  text: 'Hyper',
-                  range: { start: { x: 37, y: 2 }, end: { x: 41, y: 2 } },
-                  activate() {
-                    window.open('https://github.com/vercel/hyper', '_blank');
-                  }
-                },
-                {
-                  text: 'Theia',
-                  range: { start: { x: 47, y: 2 }, end: { x: 51, y: 2 } },
-                  activate() {
-                    window.open('https://github.com/eclipse-theia/theia', '_blank');
-                  }
-                }
-              ]);
-              return;
-            case 8:
-              callback([
-                {
-                  text: 'WebGL renderer',
-                  range: { start: { x: 54, y: 8 }, end: { x: 67, y: 8 } },
-                  activate() {
-                    window.open('https://npmjs.com/package/xterm-addon-webgl', '_blank');
-                  }
-                }
-              ]);
-              return;
-            case 14:
-              callback([
-                {
-                  text: 'Links',
-                  range: { start: { x: 45, y: 14 }, end: { x: 49, y: 14 } },
-                  activate() {
-                    window.alert('You can handle links any way you want');
-                  }
-                },
-                {
-                  text: 'themes',
-                  range: { start: { x: 52, y: 14 }, end: { x: 57, y: 14 } },
-                  activate() {
-                    isBaseTheme = !isBaseTheme;
-                    term.setOption('theme', isBaseTheme ? baseTheme : otherTheme);
-                    document.querySelector('.demo .inner').classList.toggle('other-theme', !isBaseTheme);
-                    term.write(`\r\nActivated ${isBaseTheme ? 'xterm.js' : 'snazzy'} theme`);
-                    prompt(term);
-                  }
-                },
-                {
-                  text: 'addons',
-                  range: { start: { x: 60, y: 14 }, end: { x: 65, y: 14 } },
-                  activate() {
-                    window.open('/docs/guides/using-addons/', '_blank');
-                  }
-                },
-                {
-                  text: 'typed API',
-                  range: { start: { x: 68, y: 14 }, end: { x: 76, y: 14 } },
-                  activate() {
-                    window.open('https://github.com/xtermjs/xterm.js/blob/master/typings/xterm.d.ts', '_blank');
-                  }
-                },
-              ]);
-              return;
-          }
-          callback(undefined);
-        }
-      });
+      // term.registerLinkProvider({
+      //   provideLinks(bufferLineNumber, callback) {
+      //     switch (bufferLineNumber) {
+      //       case 2:
+      //         callback([
+      //           {
+      //             text: 'VS Code',
+      //             range: { start: { x: 28, y: 2 }, end: { x: 34, y: 2 } },
+      //             activate() {
+      //               window.open('https://github.com/microsoft/vscode', '_blank');
+      //             }
+      //           },
+      //           {
+      //             text: 'Hyper',
+      //             range: { start: { x: 37, y: 2 }, end: { x: 41, y: 2 } },
+      //             activate() {
+      //               window.open('https://github.com/vercel/hyper', '_blank');
+      //             }
+      //           },
+      //           {
+      //             text: 'Theia',
+      //             range: { start: { x: 47, y: 2 }, end: { x: 51, y: 2 } },
+      //             activate() {
+      //               window.open('https://github.com/eclipse-theia/theia', '_blank');
+      //             }
+      //           }
+      //         ]);
+      //         return;
+      //       case 8:
+      //         callback([
+      //           {
+      //             text: 'WebGL renderer',
+      //             range: { start: { x: 54, y: 8 }, end: { x: 67, y: 8 } },
+      //             activate() {
+      //               window.open('https://npmjs.com/package/xterm-addon-webgl', '_blank');
+      //             }
+      //           }
+      //         ]);
+      //         return;
+      //       case 14:
+      //         callback([
+      //           {
+      //             text: 'Links',
+      //             range: { start: { x: 45, y: 14 }, end: { x: 49, y: 14 } },
+      //             activate() {
+      //               window.alert('You can handle links any way you want');
+      //             }
+      //           },
+      //           {
+      //             text: 'themes',
+      //             range: { start: { x: 52, y: 14 }, end: { x: 57, y: 14 } },
+      //             activate() {
+      //               isBaseTheme = !isBaseTheme;
+      //               term.setOption('theme', isBaseTheme ? baseTheme : otherTheme);
+      //               document.querySelector('.demo .inner').classList.toggle('other-theme', !isBaseTheme);
+      //               term.write(`\r\nActivated ${isBaseTheme ? 'xterm.js' : 'snazzy'} theme`);
+      //               prompt(term);
+      //             }
+      //           },
+      //           {
+      //             text: 'addons',
+      //             range: { start: { x: 60, y: 14 }, end: { x: 65, y: 14 } },
+      //             activate() {
+      //               window.open('/docs/guides/using-addons/', '_blank');
+      //             }
+      //           },
+      //           {
+      //             text: 'typed API',
+      //             range: { start: { x: 68, y: 14 }, end: { x: 76, y: 14 } },
+      //             activate() {
+      //               window.open('https://github.com/xtermjs/xterm.js/blob/master/typings/xterm.d.ts', '_blank');
+      //             }
+      //           },
+      //         ]);
+      //         return;
+      //     }
+      //     callback(undefined);
+      //   }
+      // });
     }
   
     function prompt(term) {
