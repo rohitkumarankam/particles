@@ -1,14 +1,14 @@
 import './style.css'
 import Experience from './Experience/Experience.js'
 import '../node_modules/xterm/css/xterm.css'
-import terminalrun from './terminal.js'
+// import terminalrun from './terminal.js'
 
 // const experience = new Experience({
 //     targetElement: document.querySelector('.experience')
 // })
 var body = document.querySelector('body')
-document.querySelector('.gui').addEventListener('click', ()=>{console.log('gui'); removechield(body); addgui(body)})
-document.querySelector('.terminal').addEventListener('click', ()=>{console.log('terminal'); removechield(body); addterminal(body)})
+// document.querySelector('.gui').addEventListener('click', ()=>{console.log('gui'); removechield(body); addgui(body)})
+// document.querySelector('.terminal').addEventListener('click', ()=>{console.log('terminal'); removechield(body); addterminal(body)})
 
 function removechield(element){
     while(element.firstChild){
@@ -29,9 +29,9 @@ function addgui(element){
         targetElement: document.querySelector('.experience')
     })
 }
-function addterminal(element){
-    var Terminal = document.createElement('div')
-    Terminal.id = 'terminal'
-    element.appendChild(Terminal)
-    terminalrun()
-}
+// function addterminal(element){
+//     var Terminal = document.createElement('div')
+//     Terminal.id = 'terminal'
+//     element.appendChild(Terminal)
+//     terminalrun()
+// }

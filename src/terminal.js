@@ -1,5 +1,6 @@
 import {Terminal} from 'xterm'
-export default function terminalrun(){
+import 'xterm/css/xterm.css'
+import './style.css'
   var baseTheme = {
         foreground: '#F8F8F8',
         background: '#2D2E2C',
@@ -54,13 +55,13 @@ export default function terminalrun(){
       // term.resize(Math.ceil(window.innerWidth/20),20)
       // term.onResize((size)=>{console.log(size)})
       var sizes = {
-        width: Math.floor(window.innerWidth*0.06),
-        height: Math.floor(window.innerHeight*0.033),
+        width: Math.floor(window.innerWidth*0.06*2),
+        height: Math.floor(window.innerHeight*0.0271*2),
       }
       term.resize(sizes.width,sizes.height)
       window.addEventListener('resize', ()=>{
-        sizes.width = Math.floor(window.innerWidth*0.06)
-        sizes.height = Math.floor(window.innerHeight*0.033)
+        sizes.width = Math.floor(window.innerWidth*0.06*2)
+        sizes.height = Math.floor(window.innerHeight*0.0271*2)
         term.resize(sizes.width, sizes.height)
       })
       // var isWebglEnabled = false;
@@ -87,28 +88,28 @@ export default function terminalrun(){
         };
 
         // TODO: Use a nicer default font
-        term.writeln([
-          '    Xterm.js is the frontend component that powers many terminals including',
-          '                           \x1b[3mVS Code\x1b[0m, \x1b[3mHyper\x1b[0m and \x1b[3mTheia\x1b[0m!',
-          '',
-          ' ┌ \x1b[1mFeatures\x1b[0m ──────────────────────────────────────────────────────────────────┐',
-          ' │                                                                            │',
-          ' │  \x1b[31;1mApps just work                         \x1b[32mPerformance\x1b[0m                        │',
-          ' │   Xterm.js works with most terminal      Xterm.js is fast and includes an  │',
-          ' │   apps like bash, vim and tmux           optional \x1b[3mWebGL renderer\x1b[0m           │',
-          ' │                                                                            │',
-          ' │  \x1b[33;1mAccessible                             \x1b[34mSelf-contained\x1b[0m                     │',
-          ' │   A screen reader mode is available      Zero external dependencies        │',
-          ' │                                                                            │',
-          ' │  \x1b[35;1mUnicode support                        \x1b[36mAnd much more...\x1b[0m                   │',
-          ' │   Supports CJK 語 and emoji \u2764\ufe0f            \x1b[3mLinks\x1b[0m, \x1b[3mthemes\x1b[0m, \x1b[3maddons\x1b[0m, \x1b[3mtyped API\x1b[0m  │',
-          ' │                                            ^ Try clicking italic text      │',
-          ' │                                                                            │',
-          ' └────────────────────────────────────────────────────────────────────────────┘',
-          ''
-        ].join('\n\r'));
+        // term.writeln([
+        //   '    Xterm.js is the frontend component that powers many terminals including',
+        //   '                           \x1b[3mVS Code\x1b[0m, \x1b[3mHyper\x1b[0m and \x1b[3mTheia\x1b[0m!',
+        //   '',
+        //   ' ┌ \x1b[1mFeatures\x1b[0m ──────────────────────────────────────────────────────────────────┐',
+        //   ' │                                                                            │',
+        //   ' │  \x1b[31;1mApps just work                         \x1b[32mPerformance\x1b[0m                        │',
+        //   ' │   Xterm.js works with most terminal      Xterm.js is fast and includes an  │',
+        //   ' │   apps like bash, vim and tmux           optional \x1b[3mWebGL renderer\x1b[0m           │',
+        //   ' │                                                                            │',
+        //   ' │  \x1b[33;1mAccessible                             \x1b[34mSelf-contained\x1b[0m                     │',
+        //   ' │   A screen reader mode is available      Zero external dependencies        │',
+        //   ' │                                                                            │',
+        //   ' │  \x1b[35;1mUnicode support                        \x1b[36mAnd much more...\x1b[0m                   │',
+        //   ' │   Supports CJK 語 and emoji \u2764\ufe0f            \x1b[3mLinks\x1b[0m, \x1b[3mthemes\x1b[0m, \x1b[3maddons\x1b[0m, \x1b[3mtyped API\x1b[0m  │',
+        //   ' │                                            ^ Try clicking italic text      │',
+        //   ' │                                                                            │',
+        //   ' └────────────────────────────────────────────────────────────────────────────┘',
+        //   ''
+        // ].join('\n\r'));
 
-        term.writeln('Below is a simple emulated backend, try running `help`.');
+        term.writeln('try running `help`.');
         prompt(term);
 
         term.onData(e => {
@@ -226,14 +227,17 @@ export default function terminalrun(){
       }
 
       var command = '';
+      var url = {};
+      url.git = 'https://github.com/rohitkumarankam'
+      url.linkedin = 'https://www.linkedin.com/in/rohitkumarankam/'
       var commands = {
-          clear: {
-              f: () => {
-                  term.clear()
-                  prompt(term)
-              },
-              description: 'clear',
-            },
+          // clear: {
+          //     f: () => {
+          //         term.clear()
+          //         prompt(term)
+          //     },
+          //     description: 'clear',
+          //   },
         help: {
           f: () => {
             term.writeln([
@@ -245,13 +249,36 @@ export default function terminalrun(){
           },
           description: 'Prints this help message',
         },
-        ls: {
+        whoami: {
           f: () => {
-            term.writeln(['a', 'bunch', 'of', 'fake', 'files'].join('\r\n'));
-            term.prompt(term);
+            term.writeln('Rohit'),
+            prompt(term);;
           },
-          description: 'Prints a fake directory structure'
+          description: "Prints user's Name",
         },
+        git:{
+          f: () => {
+            term.writeln('Opening Github');
+            window.open(url.git, '_blank').focus();
+            prompt(term);
+          },
+          description: 'Opens Git Repo',
+        },
+        linkedin:{
+          f: () => {
+            term.writeln('Opening Linkedin');
+            window.open(url.linkedin, '_blank').focus();
+            prompt(term);
+          },
+          description: 'Opens Linkedin',
+        },
+        // ls: {
+        //   f: () => {
+        //     term.writeln(['a', 'bunch', 'of', 'fake', 'files'].join('\r\n'));
+        //     term.prompt(term);
+        //   },
+        //   description: 'Prints a fake directory structure'
+        // },
         // loadtest: {
         //   f: () => {
         //     let testData = [];
@@ -301,4 +328,3 @@ export default function terminalrun(){
       }
 
   runFakeTerminal();
-}
