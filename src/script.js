@@ -1,11 +1,5 @@
 import './style.css'
 import Experience from './Experience/Experience.js'
-import '../node_modules/xterm/css/xterm.css'
-// import terminalrun from './terminal.js'
-
-// const experience = new Experience({
-//     targetElement: document.querySelector('.experience')
-// })
 var body = document.querySelector('body')
 // document.querySelector('.gui').addEventListener('click', ()=>{console.log('gui'); removechield(body); addgui(body)})
 // document.querySelector('.terminal').addEventListener('click', ()=>{console.log('terminal'); removechield(body); addterminal(body)})
