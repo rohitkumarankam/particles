@@ -35,13 +35,23 @@ var sizes = {
   width: Math.floor(window.innerWidth*0.06*2),
   height: Math.floor(window.innerHeight*0.0271*2),
 }
-term.resize(sizes.width,sizes.height)
-window.addEventListener('resize', ()=>{
+
+if(window.innerWidth <= 768)
+{
+  sizes.width = Math.floor(window.innerWidth*0.086*2/window.devicePixelRatio);
+  sizes.height = Math.floor((window.innerHeight*0.04*2)/window.devicePixelRatio);
+  term.resize(sizes.width,sizes.height)
+}else
+{
   sizes.width = Math.floor(window.innerWidth*0.06*2)
   sizes.height = Math.floor(window.innerHeight*0.0271*2)
-  term.resize(sizes.width, sizes.height)
-})
-
+  window.addEventListener('resize', ()=>{
+    sizes.width = Math.floor(window.innerWidth*0.06*2)
+    sizes.height = Math.floor(window.innerHeight*0.0271*2)
+    term.resize(sizes.width, sizes.height)
+  })
+  term.resize(sizes.width,sizes.height)
+}
 document.getElementsByClassName('xterm').onload = term.focus()
 
 function runTerminal() {
@@ -76,6 +86,10 @@ function runTerminal() {
           }
         }
         break;
+      case '\u000A':
+        runCommand(term,command);
+        command = ''
+        break;
       default: // Print all other characters for demo
         if (e >= String.fromCharCode(0x20) && e <= String.fromCharCode(0x7B) || e >= '\u00a0') {
           command += e;
@@ -98,7 +112,7 @@ var commands = {
   help: {
     f: () => {
       term.writeln([
-        'Welcome to commandline! Try some of the commands below.',
+        'Welcome to commandline! Try some of the commands below. flksdjlajsdfjasdjfjasdjfljajdsjljadsfjaldjfasjdlfajdsljalsjdflja;j',
         '',
         ...Object.keys(commands).map(e => `  ${e.padEnd(10)} ${commands[e].description}`)
       ].join('\n\r'));
