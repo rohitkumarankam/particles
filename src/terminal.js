@@ -112,7 +112,7 @@ var commands = {
   help: {
     f: () => {
       term.writeln([
-        'Welcome to commandline! Try some of the commands below. flksdjlajsdfjasdjfjasdjfljajdsjljadsfjaldjfasjdlfajdsljalsjdflja;j',
+        'Welcome to commandline! Try some of the commands below.',
         '',
         ...Object.keys(commands).map(e => `  ${e.padEnd(10)} ${commands[e].description}`)
       ].join('\n\r'));
