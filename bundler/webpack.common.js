@@ -6,7 +6,6 @@ const path = require('path')
 module.exports = {
     entry: {
         index: path.resolve(__dirname, '../src/script.js'),
-        terminal: path.resolve(__dirname, '../src/terminal.js'),
     },
     output:
     {
@@ -28,12 +27,6 @@ module.exports = {
             filename: 'index.html',
         }),
         new MiniCSSExtractPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/terminal.html'),
-            filename: 'terminal.html',
-            minify: true,
-            chunks: ['terminal']
-        })
     ],
     module:
     {
