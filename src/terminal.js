@@ -44,7 +44,7 @@ window.addEventListener('resize', ()=>{
 
 document.getElementsByClassName('xterm').onload = term.focus()
 
-function runFakeTerminal() {
+function runTerminal() {
   if (term._initialized) {
     return;
   }
@@ -152,4 +152,4 @@ function runCommand(term, text) {
   prompt(term);
 }
 
-runFakeTerminal();
+runTerminal();
