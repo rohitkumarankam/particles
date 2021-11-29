@@ -24,7 +24,8 @@ export default class Renderer
 
     setInstance()
     {
-        this.clearColor = '#130819'
+        // this.clearColor = '#130819'
+        this.clearColor = '#020222'
 
         // Renderer
         this.instance = new THREE.WebGLRenderer({
